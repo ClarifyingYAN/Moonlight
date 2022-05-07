@@ -1,0 +1,79 @@
+{
+  "log": {
+    "error": "",
+    "loglevel": "info",
+    "access": ""
+  },
+  "inbounds": [
+    {
+      "listen": "127.0.0.1",
+      "protocol": "socks",
+      "settings": {
+        "udp": false,
+        "auth": "noauth"
+      },
+      "port": "1080"
+    },
+    {
+      "listen": "127.0.0.1",
+      "protocol": "http",
+      "settings": {
+        "timeout": 360
+      },
+      "port": "1087"
+    }
+  ],
+  "outbounds": [
+    {
+      "tag": "direct",
+      "protocol": "freedom",
+      "settings": {}
+    },
+    {
+      "mux": {
+        "enabled": false,
+        "concurrency": 8
+      },
+      "protocol": "vmess",
+      "streamSettings": {
+        "network": "tcp",
+        "security": "tls"
+      },
+      "tag": "proxy",
+      "settings": {
+        "vnext": [{
+          "address": "",
+          "users": [{
+            "id": "",
+            "alterId": 32
+          }],
+          "port": 16823
+        }]
+      }
+    },
+    {
+      "tag": "block",
+      "protocol": "blackhole",
+      "settings": {}
+    }
+  ],
+  "dns": {},
+  "routing": {
+    "domainStrategy": "IPIfNonMatch",
+    "outboundTag": [
+      "proxy"
+    ],
+    "rules": [
+      {
+        "type": "field",
+        "domain": [
+          "geosite:cn"
+        ],
+        "ip": [
+          "geoip:cn"
+        ]
+      }
+    ]
+  },
+  "transport": {}
+}
