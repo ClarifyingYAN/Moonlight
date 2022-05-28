@@ -18,7 +18,7 @@ log-level: warning
 proxies:
   - name: "vmess"
     type: vmess
-    server: domian.com
+    server: domain.com
     port: 16823
     uuid: uuid
     alterId: 0
@@ -141,6 +141,19 @@ rule-providers:
     path: ./ruleset/applications.yaml
     interval: 86400
 
+  back:
+    type: http
+    behavior: classical
+    url: "https://raw.githubusercontent.com/ClarifyingYAN/Moonlight/main/etc/ClashX-Pro/ruleset/back.yaml"
+    path: ./ruleset/back.yaml
+    interval: 86400
+  
+  # local config
+  # my:
+  #   type: file
+  #   behavior: classical
+  #   path: ./ruleset/my.yaml
+
 rules:
   # - DOMAIN-SUFFIX,google.com,DIRECT
   # - DOMAIN-KEYWORD,google,DIRECT
@@ -149,7 +162,8 @@ rules:
   # - GEOIP,CN,DIRECT
   # - MATCH,DIRECT
   # - RULE-SET,reject,REJECT # block ad
-  - DOMAIN-SUFFIX,ip.cn,Proxy
-  - RULE-SET,cncidr,Proxy
-  - GEOIP,CN,Proxy
+  # - DOMAIN-SUFFIX,ip.cn,Proxy
+  # - RULE-SET,cncidr,Proxy
+  # - GEOIP,CN,Proxy
+  - RULE-SET,back,Proxy
   - MATCH,DIRECT
