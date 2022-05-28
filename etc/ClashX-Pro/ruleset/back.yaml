@@ -1,8 +1,20 @@
 payload:
+  # bilibili
   - DOMAIN-SUFFIX,bilibili.com
+
+  # netease music
   - DOMAIN-SUFFIX,music.126.net
   - DOMAIN-SUFFIX,mam.netease.com
+  # - DOMAIN,music.163.com
   - DOMAIN-SUFFIX,music.163.com
+
+  # kugou music
+  - DOMAIN-SUFFIX,kugou.com
+
+  # qq music
+  - DOMAIN-SUFFIX,y.qq.com
+  - IP-CIDR,203.205.255.185/32
+  
   # - DOMAIN-SUFFIX,google.com
   # - DOMAIN-KEYWORD,google
   # - DOMAIN,ad.com
